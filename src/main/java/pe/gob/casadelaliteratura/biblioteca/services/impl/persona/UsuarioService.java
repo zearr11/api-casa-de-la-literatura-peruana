@@ -69,8 +69,8 @@ public class UsuarioService implements IUsuarioService {
             usuario.setRol(datosUsuario.getRol());
 
             String contrasenia = datosUsuario.getPassword();
-            if (contrasenia == null)
-                throw new ErrorException409("Debe indicar la contraseña.");
+            if (contrasenia == null || contrasenia.isBlank())
+                throw new ErrorException409("No se ha definido un valor para el campo 'password'.");
 
             String contraseniaEncriptada = passwordEncoder.encode(contrasenia);
             usuario.setPassword(contraseniaEncriptada);
