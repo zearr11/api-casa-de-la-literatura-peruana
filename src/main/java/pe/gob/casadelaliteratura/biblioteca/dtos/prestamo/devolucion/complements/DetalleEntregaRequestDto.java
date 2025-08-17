@@ -20,7 +20,7 @@ public class DetalleEntregaRequestDto {
     @NotNull(message = "El número de copia es obligatorio.")
     private Integer numeroCopia;
 
-    @NotNull(message = "El tipo de entrega es obligatorio")
+    @NotNull(message = "El tipo de entrega es obligatorio.")
     private TipoEntrega tipoEntrega;
 
     @Valid

@@ -19,6 +19,8 @@ import pe.gob.casadelaliteratura.biblioteca.utils.converts.PersonaConvert;
 import pe.gob.casadelaliteratura.biblioteca.utils.exceptions.errors.ErrorException404;
 import pe.gob.casadelaliteratura.biblioteca.utils.exceptions.errors.ErrorException409;
 import pe.gob.casadelaliteratura.biblioteca.utils.validations.ArchivoValidacion;
+import pe.gob.casadelaliteratura.biblioteca.utils.validations.ValidacionDocIden;
+
 import java.util.List;
 
 @Service
@@ -46,6 +48,10 @@ public class ClienteService implements IClienteService {
         // Validacion Imagenes
         ArchivoValidacion.validacionImg(imgDocIdentidad, "documento de identidad");
         ArchivoValidacion.validacionImg(imgRecServicio, "recibo de servicio");
+
+        // Validacion Doc Identidad
+        ValidacionDocIden.validationDoc(datosCliente.getDatosPersonales().getNumeroDoc(),
+                datosCliente.getDatosPersonales().getTipoDocumento());
 
         // Carga de atributos
         Cliente cliente;

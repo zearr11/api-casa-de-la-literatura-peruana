@@ -17,6 +17,8 @@ import pe.gob.casadelaliteratura.biblioteca.utils.converts.UsuarioConvert;
 import pe.gob.casadelaliteratura.biblioteca.utils.enums.Estado;
 import pe.gob.casadelaliteratura.biblioteca.utils.exceptions.errors.ErrorException404;
 import pe.gob.casadelaliteratura.biblioteca.utils.exceptions.errors.ErrorException409;
+import pe.gob.casadelaliteratura.biblioteca.utils.validations.ValidacionDocIden;
+
 import java.util.List;
 
 @Service
@@ -41,6 +43,10 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public MensajeDto<String> saveOrUpdate(String codUsuario, UsuarioRequestDto datosUsuario) {
         String msg;
+
+        // Validacion Doc Identidad
+        ValidacionDocIden.validationDoc(datosUsuario.getDatosPersonales().getNumeroDoc(),
+                datosUsuario.getDatosPersonales().getTipoDocumento());
 
         UsuarioProjection usuarioExistente = userRepository.findByCustomized(
                         datosUsuario.getDatosPersonales().getNumeroDoc(), null, null)
@@ -86,6 +92,7 @@ public class UsuarioService implements IUsuarioService {
         } else {
             if (usuarioExistente != null && !usuarioExistente.getCodUsuario().equals(codUsuario))
                 throw new ErrorException409("Ya existe un usuario con el numero de documento ingresado.");
+
             Usuario user = userRepository.findById(codUsuario)
                     .orElseThrow(() -> new ErrorException404("No se encontró el usuario con el código: " + codUsuario));
             Persona persona1 = user.getPersona();

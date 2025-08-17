@@ -85,11 +85,11 @@ public class LibroService implements ILibroService {
                 .orElse(null);
 
         if (coleccion == null)
-            throw new ErrorException404("El codigo de coleccion ingresado no se encuentra registrado.");
+            throw new ErrorException404("El código de colección ingresado no se encuentra registrado.");
         if (autor == null)
-            throw new ErrorException404("El codigo de autor ingresado no se encuentra registrado.");
+            throw new ErrorException404("El código de autor ingresado no se encuentra registrado.");
         if (editorial == null)
-            throw new ErrorException404("El codigo de editorial ingresado no se encuentra registrado.");
+            throw new ErrorException404("El código de editorial ingresado no se encuentra registrado.");
 
         if (codigo == null) {
             if (libroDetalleExistente != null)

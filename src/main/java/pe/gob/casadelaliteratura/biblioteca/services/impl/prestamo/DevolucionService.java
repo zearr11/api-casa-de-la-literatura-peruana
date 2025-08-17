@@ -122,7 +122,7 @@ public class DevolucionService implements IDevolucionService {
              if (libroDevuelto.getTipoEntrega().equals(TipoEntrega.ENTREGADO) &&
                      libroDevuelto.getDetalleProblema() != null)
                  throw new ErrorException409(
-                         "El libro con codigo: " + libroDevuelto.getCodigoLibro() + " y numero de copia: " +
+                         "El libro con código: " + libroDevuelto.getCodigoLibro() + " y numero de copia: " +
                                  libroDevuelto.getNumeroCopia() +
                                  " se marco como entregado, pero se incluyo un problema. " +
                                  "Para registrar un problema se debe marcar el libro como no entregado. " +
@@ -311,7 +311,7 @@ public class DevolucionService implements IDevolucionService {
 
             if (objProblemaBd == null)
                 throw new ErrorException409(
-                        "El codigo de libro: " + codLibroRequest + " con el numero de copia: " + numCopiaRequest +
+                        "El código de libro: " + codLibroRequest + " con el numero de copia: " + numCopiaRequest +
                                 " no esta asociado a ningún problema del préstamo ingresado. " +
                                 "No se puede continuar con la solicitud."
                 );
@@ -329,7 +329,7 @@ public class DevolucionService implements IDevolucionService {
         }
         else {
             msg = "Se ha procesado correctamente la solución de los libros indicados. " +
-                    "Sin embargo, el préstamo aun tiene problemas pendientes de solucionar. ";
+                    "Sin embargo, el préstamo aun tiene problemas pendientes de solucionar.";
         }
         prestamoRepository.save(prestamo);
 
